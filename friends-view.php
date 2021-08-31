@@ -1,6 +1,9 @@
 <?php
-    session_start();
-    unset($_SESSION['error']);
+session_start();
+if (!isset($_SESSION['name'])) {
+    header("location:login.php");
+    die();
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -9,13 +12,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Friends System</title>
+    <title>Friends</title>
 </head>
 <body>
-    <div class="container">
-        <h1>My Friends System</h1>
-        <a href="sign-up.php">Sign up</a>
-        <a href="login.php">Login</a>
-    </div>
+
 </body>
 </html>

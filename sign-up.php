@@ -81,12 +81,12 @@ function set_error($error) {
 
             <tr>
                 <td>Password:</td>
-                <td><input type="text" name="password"></td>
+                <td><input type="password" name="password"></td>
             </tr>
 
             <tr>
                 <td>Confirm Password:</td>
-                <td><input type="text" name="confirm_password"></td>
+                <td><input type="password" name="confirm_password"></td>
             </tr>
 
         </table>
