@@ -3,6 +3,7 @@
     width: 50%;
     padding: 10px;
 }
+
 .vertical-center {
     margin: 0;
     position: absolute;
@@ -10,14 +11,27 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
 .center {
-    margin:0 auto;
-    display:block;
+    margin: 0 auto;
+    display: block;
 }
+
 .error {
     color: red;
     width: 40%;
 }
+
 .border-green {
     border: 3px solid green;
+}
+
+.table {
+    width: 50%;
+    border: solid black 1px;
+}
+
+.table td {
+
+    border: solid black 1px;
 }

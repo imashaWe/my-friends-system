@@ -29,7 +29,8 @@ if (isset($_REQUEST['submit'])) {
 </head>
 <body>
 <div class="container">
-    <table>
+    <h1>Add Friends | My Friends System</h1>
+    <table class="table">
         <?php
         $uid = $_SESSION['uid'];
 

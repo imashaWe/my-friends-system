@@ -31,7 +31,8 @@ if (isset($_REQUEST['submit'])) {
 </head>
 <body>
 <div class="container">
-    <table>
+    <h1>My Friends | My Friends System</h1>
+    <table class="table">
         <?php
         $uid = $_SESSION['uid'];
         $sql = "SELECT user.id AS id,name FROM user_friend INNER JOIN user ON user_friend.id = user.id WHERE uid = {$uid}";
