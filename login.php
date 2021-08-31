@@ -49,12 +49,15 @@ function set_error($error)
 </head>
 <body>
 <div class="container">
+    <h1 style="text-align:center">Login | My Friends System</h1>
+
     <form action="login.php" method="post">
         <?php if (isset($_SESSION['error'])): ?>
-            <span style="color: red"><?= $_SESSION['error'] ?></span>
+            <div class="center error"><span><?= $_SESSION['error'] ?></span></div>
             <br>
         <?php endif; ?>
-        <table>
+
+        <table width="40%" class="center">
             <tr>
                 <td>Email:</td>
                 <td><input type="text" name="email"></td>
@@ -65,7 +68,9 @@ function set_error($error)
                 <td><input type="password" name="password"></td>
             </tr>
         </table>
-        <button type="submit" name="submit">Login</button>
+
+        <br>
+        <button class="center" type="submit" name="submit">Login</button>
     </form>
 </div>
 </body>

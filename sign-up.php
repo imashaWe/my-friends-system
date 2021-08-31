@@ -29,7 +29,7 @@ if (isset($_REQUEST['submit'])) {
     }
 
     // to check whether the email exist
-    $sql ="SELECT id FROM user WHERE email = '{$email}'";
+    $sql = "SELECT id FROM user WHERE email = '{$email}'";
     if ($conn->query($sql)->num_rows) {
         set_error("This email is already exist");
     }
@@ -45,11 +45,13 @@ if (isset($_REQUEST['submit'])) {
     }
 }
 
-function set_error($error) {
+function set_error($error)
+{
     $_SESSION['error'] = $error;
     header("location:sign-up.php");
     die();
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -64,12 +66,16 @@ function set_error($error) {
 <body>
 
 <div class="container">
+    <h1 style="text-align: center">Sign Up | My Friends System</h1>
+
     <form action="" method="post">
         <?php if (isset($_SESSION['error'])): ?>
-            <span style="color: red"><?= $_SESSION['error'] ?></span>
+           <div class="error center">
+               <span ><?= $_SESSION['error'] ?></span>
+           </div>
             <br>
         <?php endif; ?>
-        <table>
+        <table style="width: 40%" class="center">
             <tr>
                 <td>Full Name:</td>
                 <td><input type="text" name="name"></td>
@@ -93,9 +99,10 @@ function set_error($error) {
         </table>
 
         <br>
-        <button type="submit" name="submit">Create a account</button>
+        <button type="submit" name="submit" class="center">Sign Up</button>
 
     </form>
+
 </div>
 </body>
 </html>
