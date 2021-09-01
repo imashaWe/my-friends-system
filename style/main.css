@@ -1,6 +1,6 @@
 .container {
     margin: auto;
-    width: 40%;
+    width: 50%;
     padding: 10px;
 }
 
@@ -22,8 +22,8 @@
     width: 40%;
 }
 
-.border-green {
-    border: 3px solid green;
+.border-dark {
+    border: 2px solid black;
 }
 
 .table {

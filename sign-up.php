@@ -65,7 +65,7 @@ function set_error($error)
 </head>
 <body>
 
-<div class="container">
+<div class="container border-dark">
     <h1 style="text-align: center">Sign Up | My Friends System</h1>
 
     <form action="" method="post">

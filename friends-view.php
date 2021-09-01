@@ -35,7 +35,7 @@ $start = ($page - 1) * $limit
     <title>Friends</title>
 </head>
 <body>
-<div class="container">
+<div class="container border-dark">
     <h1>My Friends | My Friends System</h1>
     <?php
     $uid = $_SESSION['uid'];

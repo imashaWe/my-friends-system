@@ -13,7 +13,7 @@
     <title>My Friends System</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container border-dark">
         <h1>Home|My Friends System</h1>
         <table>
             <tr>
@@ -27,6 +27,8 @@
         </table>
         <a href="sign-up.php">Sign up</a>&nbsp
         <a href="login.php">Login</a>&nbsp
+        <a href="friends-view.php">My Friends</a>&nbsp
+        <a href="add-friends-view.php">Add Friends</a>&nbsp
         <a href="about.php">About</a>
     </div>
 </body>

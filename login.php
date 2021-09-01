@@ -49,7 +49,7 @@ function set_error($error)
     <title>Login</title>
 </head>
 <body>
-<div class="container">
+<div class="container border-dark">
     <h1 style="text-align:center">Login | My Friends System</h1>
 
     <form action="login.php" method="post">

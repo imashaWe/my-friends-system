@@ -30,41 +30,45 @@ $start = ($page - 1) * $limit
     <title>Add Friends</title>
 </head>
 <body>
-<div class="container">
+<div class="container border-dark">
     <h1>Add Friends | My Friends System</h1>
+    <?php
+    $uid = $_SESSION['uid'];
+
+    $not_in_ids = array($uid); // to ignore this user
+
+    // to fetch current friends
+    $sql = "SELECT DISTINCT id FROM user_friend WHERE uid = {$uid}";
+    $res = $conn->query($sql);
+    if ($res->num_rows) {
+        while ($r = $res->fetch_array()) {
+            $not_in_ids[] = $r['id']; // add current friends
+        }
+    };
+
+    $not_in_ids_str = $str = implode(", ", $not_in_ids);
+
+    // to count
+    $sql = "SELECT COUNT(id) AS count FROM user WHERE id NOT IN ({$not_in_ids_str})";
+    $res = $conn->query($sql);
+    $count = $res->fetch_array()['count'];
+    $num_pages = ceil($count / $limit);
+
+
+    $sql = "SELECT id,name FROM user WHERE id NOT IN ({$not_in_ids_str}) LIMIT {$start},{$limit}";
+    $res = $conn->query($sql);
+    ?>
+    <p>User Name:<b><?=$_SESSION['name']?></b></p>
+    <p>Total Number of Users:<b><?=$count?></b></p>
     <table class="table">
         <?php
-        $uid = $_SESSION['uid'];
-
-        $not_in_ids = array($uid); // to ignore this user
-
-        // to fetch current friends
-        $sql = "SELECT DISTINCT id FROM user_friend WHERE uid = {$uid}";
-        $res = $conn->query($sql);
-        if ($res->num_rows) {
-            while ($r = $res->fetch_array()) {
-                $not_in_ids[] = $r['id']; // add current friends
-            }
-        };
-
-        $not_in_ids_str = $str = implode(", ", $not_in_ids);
-
-        // to count
-        $sql = "SELECT COUNT(id) AS count FROM user WHERE id NOT IN ({$not_in_ids_str})";
-        $res = $conn->query($sql);
-        $count = $res->fetch_array()['count'];
-        $num_pages = ceil($count / $limit);
-
-
-        $sql = "SELECT id,name FROM user WHERE id NOT IN ({$not_in_ids_str}) LIMIT {$start},{$limit}";
-        $res = $conn->query($sql);
 
         if ($res->num_rows) {
             while ($r = $res->fetch_array()) {
                 echo "
                        <tr>
                            <td>{$r['name']}</td>
-                           <td>
+                           <td width='30'>
                                 <form action='add-friends-view.php'method='post'>
                                     <input type='hidden' name='id' value='{$r['id']}'>
                                     <button type='submit' name='submit'>Add</button>
@@ -76,7 +80,7 @@ $start = ($page - 1) * $limit
         }
         ?>
     </table>
-    <div>
+    <div class="pagination">
         <?php if ($page != 1): ?>
             <a href="<?= $_SERVER['PHP_SELF'] . "?page=" . ($page - 1) ?>">Previous</a>
         <?php endif; ?>
@@ -92,7 +96,8 @@ $start = ($page - 1) * $limit
         <?php endif; ?>
 
     </div>
-    <a href="logout.php">Log out</a>
+    <a href="friends-view.php">My Friends</a>
+    <a href="logout.php" style="float: right">Log out</a>
 </div>
 </body>
 </html>
