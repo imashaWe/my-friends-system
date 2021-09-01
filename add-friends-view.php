@@ -17,7 +17,14 @@ if (isset($_REQUEST['submit'])) {
 }
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $limit = 5;
-$start = ($page - 1) * $limit
+$start = ($page - 1) * $limit;
+
+function count_mutual_friends($conn, $user_friends_str, $id)
+{
+    $sql = "SELECT COUNT(id) AS count from user_friend WHERE id IN ({$user_friends_str}) AND uid = {$id}";
+    return $conn->query($sql)->fetch_array()['count'];
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,16 +65,19 @@ $start = ($page - 1) * $limit
     $sql = "SELECT id,name FROM user WHERE id NOT IN ({$not_in_ids_str}) LIMIT {$start},{$limit}";
     $res = $conn->query($sql);
     ?>
-    <p>User Name:<b><?=$_SESSION['name']?></b></p>
-    <p>Total Number of Users:<b><?=$count?></b></p>
+    <p>User Name:<b><?= $_SESSION['name'] ?></b></p>
+    <p>Total Number of Users:<b><?= $count ?></b></p>
     <table class="table">
         <?php
 
         if ($res->num_rows) {
             while ($r = $res->fetch_array()) {
+                $mutual_friends = count_mutual_friends($conn, $not_in_ids_str, $r['id']);
+
                 echo "
                        <tr>
                            <td>{$r['name']}</td>
+                           <td>{$mutual_friends} mutual friends</td>
                            <td width='30'>
                                 <form action='add-friends-view.php'method='post'>
                                     <input type='hidden' name='id' value='{$r['id']}'>
@@ -88,7 +98,7 @@ $start = ($page - 1) * $limit
             <?php if ($page == $i): ?>
                 <a href="<?= $_SERVER['PHP_SELF'] . "?page=" . ($i) ?>" class="active"><?= $i ?></a>
             <?php else: ?>
-                <a href="<?= $_SERVER['PHP_SELF'] . "?page=" . ($i) ?>" ><?= $i ?></a>
+                <a href="<?= $_SERVER['PHP_SELF'] . "?page=" . ($i) ?>"><?= $i ?></a>
             <?php endif; ?>
         <?php endfor; ?>
         <?php if ($page != $num_pages): ?>
