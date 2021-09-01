@@ -9,7 +9,7 @@ if (!isset($_SESSION['uid'])) {
 if (isset($_REQUEST['submit'])) {
     $uid = $_SESSION['uid'];
     $id = $_REQUEST['id'];
-    $sql = "INSERT INTO user_friend VALUES ('{$uid}','{$id}')";
+    $sql = "INSERT INTO user_friend VALUES ('{$uid}','{$id}'),('{$id}','{$uid}')";
     $res = $conn->query($sql);
     if ($res) {
         header("location:friends-view.php");

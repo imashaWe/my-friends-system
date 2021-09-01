@@ -9,8 +9,8 @@ if (!isset($_SESSION['uid'])) {
 if (isset($_REQUEST['submit'])) {
     $uid = $_SESSION['uid'];
     $id = $_REQUEST['id'];
-    $sql = "DELETE FROM user_friend WHERE uid = '{$uid}' AND id = '{$id}'";
-
+    $sql = "DELETE FROM user_friend WHERE (uid = '{$uid}' AND id = '{$id}') OR (uid = '{$id}' AND id = '{$uid}')";
+echo $sql;
     $res = $conn->query($sql);
     if ($res) {
         header("location:friends-view.php");
