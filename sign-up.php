@@ -100,7 +100,7 @@ function set_error($error)
 
         <br>
         <button type="submit" name="submit" class="center">Sign Up</button>
-
+        <p style="text-align: center">Already have an account? <a href="login.php">Log In</a></p>
     </form>
 
 </div>

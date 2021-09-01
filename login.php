@@ -71,6 +71,7 @@ function set_error($error)
 
         <br>
         <button class="center" type="submit" name="submit">Login</button>
+        <p style="text-align: center">Doesn't have an account? <a href="sign-up.php">Sign up</a></p>
     </form>
 </div>
 </body>

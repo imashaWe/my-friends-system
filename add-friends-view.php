@@ -67,6 +67,7 @@ if (isset($_REQUEST['submit'])) {
         }
         ?>
     </table>
+    <a href="logout.php">Log out</a>
 </div>
 </body>
 </html>

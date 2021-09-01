@@ -55,6 +55,7 @@ if (isset($_REQUEST['submit'])) {
         ?>
     </table>
     <a href="add-friends-view.php">Add Friends</a>
+    <a href="logout.php.php">Log out</a>
 </div>
 </body>
 </html>
