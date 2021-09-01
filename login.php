@@ -21,8 +21,9 @@ if (isset($_REQUEST['submit'])) {
 
     if ($res->num_rows) {
         unset($_SESSION['error']);
-        $_SESSION['uid'] = $res->fetch_array()['id'];
-        $_SESSION['name'] = $res->fetch_array()['name'];
+        $data = $res->fetch_array();
+        $_SESSION['uid'] = $data['id'];
+        $_SESSION['name'] = $data['name'];
         header("location:friends-view.php");
 
     } else {

@@ -37,27 +37,32 @@ $start = ($page - 1) * $limit
 <body>
 <div class="container">
     <h1>My Friends | My Friends System</h1>
+    <?php
+    $uid = $_SESSION['uid'];
+
+    // to count
+    $sql = "SELECT COUNT(id) AS count FROM user_friend WHERE uid = {$uid}";
+    $res = $conn->query($sql);
+    $count = $res->fetch_array()['count'];
+    $num_pages = ceil($count / $limit);
+
+    $sql = "SELECT user.id AS id,name FROM user_friend INNER JOIN user ON user_friend.id = user.id WHERE uid = {$uid} LIMIT {$start},{$limit}";
+    $res = $conn->query($sql);
+    ?>
+    <p>User Name:<b><?=$_SESSION['name']?></b></p>
+    <p>Total Number of Friends:<b><?=$count?></b></p>
     <table class="table">
         <?php
-        $uid = $_SESSION['uid'];
 
-        // to count
-        $sql = "SELECT COUNT(id) AS count FROM user_friend WHERE uid = {$uid}";
-        $res = $conn->query($sql);
-        $count = $res->fetch_array()['count'];
-        $num_pages = ceil($count / $limit);
-
-        $sql = "SELECT user.id AS id,name FROM user_friend INNER JOIN user ON user_friend.id = user.id WHERE uid = {$uid} LIMIT {$start},{$limit}";
-        $res = $conn->query($sql);
         if ($res->num_rows) {
             while ($r = $res->fetch_array()) {
                 echo "
                        <tr>
                            <td>{$r['name']}</td>
-                           <td>
+                           <td width='30'>
                                 <form action='friends-view.php'method='post'>
                                     <input type='hidden' name='id' value='{$r['id']}'>
-                                    <button type='submit' name='submit'>Remove</button>
+                                    <button type='submit' name='submit'>Unfriend</button>
                                 </form>
                             </td>
                         </tr>
@@ -66,7 +71,7 @@ $start = ($page - 1) * $limit
         }
         ?>
     </table>
-    <div>
+    <div class="pagination">
         <?php if ($page != 1): ?>
             <a href="<?= $_SERVER['PHP_SELF'] . "?page=" . ($page - 1) ?>">Previous</a>
         <?php endif; ?>
@@ -74,7 +79,7 @@ $start = ($page - 1) * $limit
             <?php if ($page == $i): ?>
                 <a href="<?= $_SERVER['PHP_SELF'] . "?page=" . ($i) ?>" class="active"><?= $i ?></a>
             <?php else: ?>
-                <a href="<?= $_SERVER['PHP_SELF'] . "?page=" . ($i) ?>" ><?= $i ?></a>
+                <a href="<?= $_SERVER['PHP_SELF'] . "?page=" . ($i) ?>"><?= $i ?></a>
             <?php endif; ?>
         <?php endfor; ?>
         <?php if ($page != $num_pages): ?>
@@ -83,7 +88,7 @@ $start = ($page - 1) * $limit
 
     </div>
     <a href="add-friends-view.php">Add Friends</a>
-    <a href="logout.php.php">Log out</a>
+    <a href="logout.php" style="float: right">Log out</a>
 </div>
 </body>
 </html>

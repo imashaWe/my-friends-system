@@ -14,9 +14,20 @@
 </head>
 <body>
     <div class="container">
-        <h1>My Friends System</h1>
-        <a href="sign-up.php">Sign up</a>
-        <a href="login.php">Login</a>
+        <h1>Home|My Friends System</h1>
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td>W.A.N.I.Kularathne</td>
+            </tr>
+            <tr>
+                <td>Student ID:</td>
+                <td>SE/2018/025</td>
+            </tr>
+        </table>
+        <a href="sign-up.php">Sign up</a>&nbsp
+        <a href="login.php">Login</a>&nbsp
+        <a href="about.php">About</a>
     </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 .container {
     margin: auto;
-    width: 50%;
+    width: 40%;
     padding: 10px;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .table {
-    width: 50%;
+    width: 100%;
     border: solid black 1px;
 }
 
@@ -37,4 +37,9 @@
 }
 .active {
     color: green;
+    font-weight: bold;
+}
+
+.pagination {
+    text-align: center;
 }
