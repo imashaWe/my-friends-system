@@ -19,7 +19,7 @@ echo $sql;
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 $limit = 5;
-$start = ($page - 1) * $limit
+$start = ($page - 1) * $limit;
 
 ?>
 <!doctype html>
